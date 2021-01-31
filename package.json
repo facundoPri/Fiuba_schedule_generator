@@ -1,5 +1,5 @@
 {
-  "name": "with-chakra-ui",
+  "name": "generador-horarios-facu",
   "version": "0.1.0",
   "scripts": {
     "dev": "next dev",
@@ -18,3 +18,4 @@
   },
   "license": "MIT"
 }
+  
