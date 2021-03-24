@@ -1,22 +1,22 @@
 import {
-    Popover,
-    PopoverTrigger,
-    PopoverContent,
-    PopoverArrow,
-    Flex,
-    Input,
     Button,
-    useColorMode,
-} from "@chakra-ui/react"
+    Popover,
+    PopoverArrow,
+    PopoverContent,
+    PopoverTrigger,
+    useColorMode
+} from "@chakra-ui/react";
 import { useRef } from 'react';
+import { FormAddSubject } from "./FormAddSubject";
+
+
 export const AddSubject = ({ isOpen, onToggle }) => {
     const { colorMode } = useColorMode()
     const bgColor = { light: 'gray.100', dark: 'gray.600' }
-    const color = { light: 'black', dark: 'white' }
     const initialInpuRef = useRef()
 
     return (
-        <Popover
+        < Popover
             placement="right"
             initialFocusRef={initialInpuRef}
             isOpen={isOpen}
@@ -31,14 +31,8 @@ export const AddSubject = ({ isOpen, onToggle }) => {
             </PopoverTrigger>
             <PopoverContent bg={bgColor[colorMode]} p={3} border={0}>
                 <PopoverArrow bg={bgColor[colorMode]} />
-                <form onSumbit={(e) => (e.preventDefault() /* && onToggle() */)}>
-                    <Flex w={300} minW={300} borderRadius="md" alignItems="center">
-                        <Input placeholder="Codigo" borderEndRadius="none" ref={initialInpuRef} isRequired />
-                        <Input placeholder="Materia" borderStartRadius="none" isRequired />
-                        <Button type="submit" ml={2} px={5} color={color[colorMode]} /* onClick={onToggle} */>Crear</Button>
-                    </Flex>
-                </form>
+                <FormAddSubject onToggle={onToggle} initialInpuRef={initialInpuRef} />
             </PopoverContent>
-        </Popover>
+        </Popover >
     )
 }

@@ -8,7 +8,9 @@ export const Container = (props) => {
   return (
     <Flex
       flexDir="column"
-      h="full"
+      h="100vh"
+      w="100vw"
+      overflow="hidden"
       bg={bgColor[colorMode]}
       color={color[colorMode]}
       {...props}
