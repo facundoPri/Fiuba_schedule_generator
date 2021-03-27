@@ -10,7 +10,7 @@ import { useColorMode } from "@chakra-ui/color-mode"
 // const bgColor = { light: 'gray.50', dark: 'gray.500' }
 // bg = { bgColor[colorMode]}
 
-const colors = {
+export const colors = {
   red: { light: "red.400", dark: "red.600" },
   orange: { light: "orange.300", dark: "orange.500" },
   yellow: { light: "yellow.300", dark: "yellow.500" },
