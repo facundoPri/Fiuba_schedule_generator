@@ -22,12 +22,12 @@ export const ClassCard = ({ lesson, index }) => {
                     {...provided.draggableProps}
                     {...provided.dragHandleProps}
                     ref={provided.innerRef} >
-                    <Accordion /* defaultIndex={[0]} */ allowMultiple>
+                    <Accordion allowMultiple>
                         <AccordionItem bg={bgColor[colorMode]} border={0} borderRadius="md" mt={2} >
-                            <Flex alignItems="center" py={2} px={3}>
-                                <Box flex="1" textAlign="left">
+                            <Flex alignItems="center" justify="space-between" py={1} px={3}>
+                                <Text>
                                     {index + 1}. {lesson.lessonCode} - {lesson.teacher}
-                                </Box>
+                                </Text>
                                 <Box>
                                     <AccordionButton borderRadius="md">
                                         <AccordionIcon />
@@ -38,7 +38,7 @@ export const ClassCard = ({ lesson, index }) => {
                                 <Flex flexDir="column">
                                     {lesson.schedules.map((schedule, index) => {
                                         return (
-                                            <Text key={schedule.id}>{schedule.since} - {schedule.until}, {schedule.day.charAt(0).toUpperCase() + schedule.day.slice(1)}</Text>
+                                            <Text key={schedule.id}>{schedule.day.charAt(0).toUpperCase() + schedule.day.slice(1)}: {schedule.since} - {schedule.until}</Text>
                                         )
                                     })}
                                 </Flex>
