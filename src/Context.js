@@ -1,6 +1,16 @@
-import React, { useReducer } from 'react'
+import React, { useEffect, useReducer } from 'react'
 import initialData from './initial-data'
 import { v4 as uuid } from "uuid";
+
+const initializer = (initialState = initialData) => {
+    const ISSERVER = typeof window === "undefined";
+
+    if (!ISSERVER) {
+        return JSON.parse(localStorage.getItem("localState")) || initialState;
+    }
+    return initialState
+
+}
 
 const reducer = (state, action) => {
     switch (action.type) {
@@ -47,6 +57,19 @@ const reducer = (state, action) => {
                 }
             }
 
+        case "deleteSubject":
+            {
+                let newState = { ...state }
+                let subject = newState.subjects[action.subjectId]
+                subject.lessonIds.map(lessonId => {
+                    delete newState.lesson[lessonId]
+                })
+                newState.subjectOrder = newState.subjectOrder.filter(subject => subject != action.subjectId)
+                delete newState.subjects[action.subjectId]
+
+                return newState
+            }
+
     }
 }
 
@@ -54,7 +77,11 @@ const StateContext = React.createContext()
 const DispatchContext = React.createContext()
 
 const StateProvider = ({ children }) => {
-    const [state, dispatch] = useReducer(reducer, initialData)
+    const [state, dispatch] = useReducer(reducer, initialData, initializer)
+
+    useEffect(() => {
+        localStorage.setItem("localState", JSON.stringify(state));
+    }, [state]);
 
     return (
         <DispatchContext.Provider value={dispatch}>
