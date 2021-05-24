@@ -1,6 +1,4 @@
-import {
-  useDisclosure
-} from "@chakra-ui/react"
+import { useDisclosure } from "@chakra-ui/react"
 import { useContext, useEffect, useState } from "react"
 import { DragDropContext } from "react-beautiful-dnd"
 import { AddSubject } from '../components/AddSubject'
