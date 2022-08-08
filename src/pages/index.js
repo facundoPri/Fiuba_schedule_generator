@@ -4,14 +4,12 @@ import { DragDropContext } from 'react-beautiful-dnd'
 import { AddSubject } from '../components/AddSubject'
 import { Card } from '../components/Card'
 import { Content } from '../components/Content'
-import { ModalAddClass } from '../components/ModalAddClass'
 import { ModalLesson, useLessonModal } from '../components/ModalLesson'
 import { useDataStore } from '../Context'
 
 const Index = () => {
-  const {onOpenModal, onCloseModal} = useLessonModal(state => ({
+  const {onOpenModal} = useLessonModal(state => ({
     onOpenModal: state.onOpen,
-    onCloseModal: state.onClose
     }))
   const {
     isOpen: isOpenAddSubject,

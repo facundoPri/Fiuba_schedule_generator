@@ -14,7 +14,7 @@ import { Field, FieldArray, Form, Formik } from 'formik'
 import { generate } from 'shortid'
 import { useDataStore } from '../Context'
 
-export const FormAddLesson = ({ onClose, initialRef, subjectId }) => {
+export const FormLesson = ({ onClose, initialRef, subjectId }) => {
   const { addLesson, subjectsOrder, subjects } = useDataStore(state => ({
     addLesson: state.addLesson,
     subjectsOrder: state.subjectsOrder,
