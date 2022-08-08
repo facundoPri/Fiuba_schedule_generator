@@ -119,12 +119,12 @@ export const Calendar = function ({ days, hours, schedules }) {
                           boxShadow='lg'
                         >
                           <Text>
-                            {subjects[lessons[schedule.lesson].subjectId].code}-
-                            {subjects[lessons[schedule.lesson].subjectId].name}
+                            {subjects[lessons[schedule.lesson].subjectId]?.code}-
+                            {subjects[lessons[schedule.lesson].subjectId]?.name}
                           </Text>
                           <Text>
-                            {lessons[schedule.lesson].lessonCode}-
-                            {lessons[schedule.lesson].teacher}
+                            {lessons[schedule.lesson]?.lessonCode}-
+                            {lessons[schedule.lesson]?.teacher}
                           </Text>
                         </Flex>
                       )
