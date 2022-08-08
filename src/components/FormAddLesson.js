@@ -12,7 +12,7 @@ import {
 } from '@chakra-ui/react'
 import { Field, FieldArray, Form, Formik } from 'formik'
 import { generate } from 'shortid'
-import { useDataStore } from '../ContextZustand'
+import { useDataStore } from '../Context'
 
 export const FormAddLesson = ({ onClose, initialRef, subjectId }) => {
   const { addLesson, subjectsOrder, subjects } = useDataStore(state => ({

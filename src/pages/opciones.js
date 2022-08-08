@@ -3,7 +3,7 @@ import { Divider } from '@chakra-ui/layout'
 import { Flex } from '@chakra-ui/layout'
 import { Spinner } from '@chakra-ui/react'
 import { useEffect } from 'react'
-import { useDataStore } from '../ContextZustand'
+import { useDataStore } from '../Context'
 
 const Opciones = () => {
   const {

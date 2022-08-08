@@ -5,19 +5,18 @@ import { AddSubject } from '../components/AddSubject'
 import { Card } from '../components/Card'
 import { Content } from '../components/Content'
 import { ModalAddClass } from '../components/ModalAddClass'
-import { useDataStore } from '../ContextZustand'
+import { ModalLesson, useLessonModal } from '../components/ModalLesson'
+import { useDataStore } from '../Context'
 
 const Index = () => {
-  const {
-    isOpen: isOpenModal,
-    onOpen: onOpenModal,
-    onClose: onCloseModal
-  } = useDisclosure()
+  const {onOpenModal, onCloseModal} = useLessonModal(state => ({
+    onOpenModal: state.onOpen,
+    onCloseModal: state.onClose
+    }))
   const {
     isOpen: isOpenAddSubject,
     onToggle: onToggleAddSubject
   } = useDisclosure()
-  const [subjectIdModal, setSubjectIdModal] = useState('')
 
   const { subjectsOrder, subjects, lessons,reorderOnDragEnd } = useDataStore(state => ({
     subjectsOrder: state.subjectsOrder,
@@ -43,8 +42,7 @@ const Index = () => {
                 subject={subject}
                 lessons={subjectLessons}
                 openModal={() => {
-                  setSubjectIdModal(subjectId)
-                  onOpenModal()
+                  onOpenModal(subjectId)
                 }}
               />
             )
@@ -52,15 +50,7 @@ const Index = () => {
         </DragDropContext>
         <AddSubject isOpen={isOpenAddSubject} onToggle={onToggleAddSubject} />
       </Content>
-      <ModalAddClass
-        isOpen={isOpenModal}
-        onOpen={onOpenModal}
-        subjectId={subjectIdModal}
-        onClose={() => {
-          onCloseModal()
-          setSubjectIdModal('')
-        }}
-      />
+      <ModalLesson />
     </>
   )
 }

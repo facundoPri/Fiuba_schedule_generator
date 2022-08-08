@@ -7,7 +7,7 @@ import {
   useColorMode
 } from '@chakra-ui/react'
 import { Field, Form, Formik } from 'formik'
-import { useDataStore } from '../ContextZustand'
+import { useDataStore } from '../Context'
 
 export function FormAddSubject ({ onToggle, initialInpuRef }) {
   const { colorMode } = useColorMode()

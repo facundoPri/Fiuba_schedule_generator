@@ -20,7 +20,7 @@ import { useState } from 'react'
 import { Droppable } from 'react-beautiful-dnd'
 import { BsThreeDots } from 'react-icons/bs'
 import { ClassCard } from '../components/ClassCard'
-import { useDataStore } from '../ContextZustand'
+import { useDataStore } from '../Context'
 import { colors } from '../utils/subjectColorGenerator'
 
 const EditForm = ({ subject, color }) => {
