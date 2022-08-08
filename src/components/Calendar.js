@@ -2,7 +2,7 @@ import { Box, Divider, Flex, Text } from '@chakra-ui/layout'
 import { useState } from 'react'
 import { subjectColorGenerator } from '../utils/subjectColorGenerator'
 import { useColorMode } from '@chakra-ui/color-mode'
-import { useDataStore } from '../ContextZustand'
+import { useDataStore } from '../Context'
 
 const grid = {
   x: 80,

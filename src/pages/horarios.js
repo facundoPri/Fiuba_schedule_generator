@@ -3,7 +3,7 @@ import { ChevronLeftIcon, ChevronRightIcon } from '@chakra-ui/icons'
 import { Flex, Text } from '@chakra-ui/layout'
 import { useEffect, useState } from 'react'
 import { Calendar } from '../components/Calendar'
-import { useDataStore } from '../ContextZustand'
+import { useDataStore } from '../Context'
 
 import { schedulesGenerator, toMinutes } from '../utils/schedulesGenerator_v2'
 
