@@ -14,6 +14,7 @@ export const ModalAddClass = ({ isOpen, onClose, subjectId }) => {
     const { colorMode } = useColorMode()
     const color = { light: 'black', dark: 'white' }
     const initialRef = useRef()
+    // TODO: use global state for this
     return (
         <Modal
             initialFocusRef={initialRef}

@@ -1,5 +1,4 @@
 import { ChakraProvider, ColorModeProvider } from '@chakra-ui/react'
-import { StateProvider } from '../Context';
 import { Header } from '../components/Header'
 import { Container } from '../components/Container'
 
@@ -13,12 +12,10 @@ function MyApp({ Component, pageProps }) {
           useSystemColorMode: false,
         }}
       >
-        <StateProvider>
           <Container minH="100vh">
             <Header />
             <Component {...pageProps} />
           </Container >
-        </StateProvider>
       </ColorModeProvider>
     </ChakraProvider>
   )

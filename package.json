@@ -24,7 +24,8 @@
     "react-scrollbar-size": "^3.1.0",
     "shortid": "^2.2.16",
     "use-immer": "^0.4.2",
-    "uuid": "^8.3.2"
+    "uuid": "^8.3.2",
+    "zustand": "^4.0.0"
   },
   "license": "MIT"
 }
