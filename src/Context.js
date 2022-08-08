@@ -36,6 +36,32 @@ export const useDataStore = create(
             lessons: { ...state.lessons, [newLessonId]: newLesson }
           }
         }),
+      editLesson: (lessonId, lesson) =>
+        set(state => {
+          return {
+            lessons: {
+              ...state.lessons,
+              [lessonId]: { ...state.lessons[lessonId], ...lesson }
+            }
+          }
+        }),
+      deleteLesson: lessonId =>
+        set(state => {
+          // Remove lesson from subject
+          let newSubject = {
+            ...state.subjects[state.lessons[lessonId].subjectId]
+          }
+          newSubject.lessonIds = newSubject.lessonIds.filter(
+            id => id !== lessonId
+          )
+          // Remove lesson from state
+          const newLessons = { ...state.lessons }
+          delete newLessons[lessonId]
+          return {
+            subjects: { ...state.subjects, [newSubject.id]: newSubject },
+            lessons: newLessons
+          }
+        }),
       deleteSubject: subjectId =>
         set(state => {
           let newLessons = { ...state.lessons }
