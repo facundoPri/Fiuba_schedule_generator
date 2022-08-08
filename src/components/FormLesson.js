@@ -13,24 +13,50 @@ import {
 import { Field, FieldArray, Form, Formik } from 'formik'
 import { generate } from 'shortid'
 import { useDataStore } from '../Context'
+import { useLessonModal } from './ModalLesson'
 
-export const FormLesson = ({ onClose, initialRef, subjectId }) => {
-  const { addLesson, subjectsOrder, subjects } = useDataStore(state => ({
+export const FormLesson = ({ initialRef }) => {
+  const {
+    addLesson,
+    editLesson,
+    deleteLesson,
+    subjectsOrder,
+    subjects
+  } = useDataStore(state => ({
     addLesson: state.addLesson,
+    editLesson: state.editLesson,
+    deleteLesson: state.deleteLesson,
     subjectsOrder: state.subjectsOrder,
     subjects: state.subjects
   }))
+  const { onClose, subjectId, lesson } = useLessonModal(state => ({
+    onClose: state.onClose,
+    subjectId: state.subjectId,
+    lesson: state.lesson
+  }))
+
+  function handleDelete () {
+    deleteLesson(lesson.id)
+    onClose()
+  }
+
   return (
     <Formik
       initialValues={{
         subjectId,
-        teacher: '',
-        lessonCode: '',
-        schedules: [{ id: generate(), day: '', since: '', until: '' }]
+        teacher: lesson?.teacher || '',
+        lessonCode: lesson?.lessonCode || '',
+        schedules: lesson?.schedules || [
+          { id: generate(), day: '', since: '', until: '' }
+        ]
       }}
       onSubmit={(values, actions) => {
         console.log(values)
-        addLesson(values)
+        if (lesson.id) {
+          editLesson(lesson.id, values)
+        } else {
+          addLesson(values)
+        }
         actions.resetForm()
         onClose()
       }}
@@ -192,8 +218,13 @@ export const FormLesson = ({ onClose, initialRef, subjectId }) => {
               )}
             </FieldArray>
             <Flex alignSelf='flex-end' mt={6}>
+              {lesson.id && (
+                <Button colorScheme='red' mr={3} onClick={handleDelete}>
+                  Delete
+                </Button>
+              )}
               <Button colorScheme='blue' mr={3} type='submit'>
-                Salvar
+                Guardar
               </Button>
               <Button onClick={onClose}>Cancel</Button>
             </Flex>

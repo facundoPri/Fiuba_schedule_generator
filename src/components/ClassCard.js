@@ -7,19 +7,25 @@ import {
   AccordionItem,
   AccordionButton,
   AccordionPanel,
-  AccordionIcon
+  AccordionIcon,
+  Link
 } from '@chakra-ui/react'
 import { useState } from 'react'
 import { Draggable } from 'react-beautiful-dnd'
+import { useLessonModal } from './ModalLesson'
 
 export const ClassCard = ({ lesson, index }) => {
   const { colorMode } = useColorMode()
   const bgColor = { light: 'gray.50', dark: 'gray.500' }
-  const [subjectToEdit, setSubjectToEdit] = useState(null)
+  const { setLessonToEdit, onOpen } = useLessonModal(state => ({
+    setLessonToEdit: state.setLessonToEdit,
+    onOpen: state.onOpen
+  }))
 
-    function handleClickSchedule(subject) {
-        setSubjectToEdit(subject)
-    }
+  function handleClickLesson (lesson) {
+    setLessonToEdit(lesson)
+    onOpen(lesson.subjectId)
+  }
 
   return (
     <Draggable draggableId={lesson.id} index={index}>
@@ -50,22 +56,22 @@ export const ClassCard = ({ lesson, index }) => {
                 <Flex flexDir='column'>
                   {lesson.schedules.map((schedule, index) => {
                     return (
-                      <Text
-                        _hover={{
-                          color: 'gray.700',
-                          cursor: 'pointer'
-                        }}
-                        onClick={() => {
-                          handleClickSchedule(schedule)
-                        }}
-                        key={schedule.id}
-                      >
+                      <Text key={schedule.id}>
                         {schedule.day.charAt(0).toUpperCase() +
                           schedule.day.slice(1)}
                         : {schedule.since} - {schedule.until}
                       </Text>
                     )
                   })}
+                  <Link
+                    color={'gray.500'}
+                    onClick={() => {
+                      handleClickLesson(lesson)
+                    }}
+                    mt={2}
+                  >
+                    Edit
+                  </Link>
                 </Flex>
               </AccordionPanel>
             </AccordionItem>
